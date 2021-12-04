@@ -10,8 +10,12 @@ initial_state = [1/sqrt(3),sqrt(2/3)]
 qc_state.initialize(initial_state,0)
 qc_state.save_statevector()
 qc_state.draw(initial_state=True)
-result = sim.run(qc_state).result()
+result = sim.run(qc_state)  .result()
 result.get_statevector()
 counts = result.get_counts()
 plot_histogram(counts)
+# %%
+from qiskit_textbook.widgets import gate_demo
+gate_demo(gates='pauli+h+p')
+
 # %%
