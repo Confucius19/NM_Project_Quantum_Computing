@@ -34,7 +34,7 @@ from qiskit_textbook.widgets import scalable_circuit
 from numpy import pi
 import warnings
 
-from utils import plot_current_bloch_state
+# from qclib.utils import plot_current_bloch_state
 warnings.filterwarnings("ignore")
 
 # %%

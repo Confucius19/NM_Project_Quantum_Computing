@@ -1,3 +1,4 @@
+
 #%%
 from operator import mod
 from typing import Iterable
@@ -73,7 +74,7 @@ def n_bit_adder(word_size: int):
     a_index = a_indices[i]
     b_index = b_indices[i]
     aux_MSB_index = b_indices[-1] if i + 1+ aux_start >= total_qubits  else aux_indices[i + 1]
-    main.append(cb,qargs=[aux_LSB_index, a_index, b_index, aux_MSB_index])
+    main.compose(cb,qubits=[aux_LSB_index, a_index, b_index, aux_MSB_index], inplace=True)
 
   # main.barrier()
   main.cnot(a_indices[word_size-1], b_indices[word_size-1])
@@ -86,10 +87,10 @@ def n_bit_adder(word_size: int):
     if i != word_size -1:
       # Inverse CARRY
       cb_inverse = carry_inverse_block()
-      main.append(cb_inverse,qargs=[aux_LSB_index, a_index, b_index, aux_MSB_index])
+      main.compose(cb_inverse,qubits=[aux_LSB_index, a_index, b_index, aux_MSB_index], inplace=True)
 
     sb = sum_block()
-    main.append(sb,qargs=[aux_LSB_index, a_index, b_index])
+    main.compose(sb,qubits=[aux_LSB_index, a_index, b_index], inplace=True)
 
 
   
@@ -144,13 +145,13 @@ def n_bit_modular_adder(word_size: int, modulus : int):
   tracker_index = tracker_start
 
   main = QuantumCircuit(total_qubits)
-  main.snapshot("Init")
+  # main.snapshot("Init")
 
   adder_indices = [*a_indices, *b_indices, *aux_indices]
   #BLOCK 1
   #Compute A + B
   main.append(n_bit_adder(word_size), qargs=adder_indices )
-  main.snapshot('PostAdd')
+  # main.snapshot('PostAdd')
   
 
   # Compute A + B - N
@@ -172,7 +173,7 @@ def n_bit_modular_adder(word_size: int, modulus : int):
   main.cnot(b_indices[-1], tracker_index)
   main.x(b_indices[-1])
 
-  main.snapshot('PostSub')
+  # main.snapshot('PostSub')
 
 
 
@@ -277,19 +278,19 @@ def n_bit_controlled_modular_multiplier(word_size : int, modulus : int, multipli
   a_indices = list(range(word_size+1, 2*word_size+1 ))
   output_indices = list(range(2*word_size+1,3*word_size+2)) #word_size +1 long
 
-  main.snapshot("Init")
+  # main.snapshot("Init")
   for operand_bit_index in range(word_size):
     factor = (multiplier * 2**operand_bit_index) % modulus
     should_and_array = [bit_str == '1' for bit_str in bin(factor)[2:][::-1]]
     for target_index, should_and in enumerate(should_and_array):
       if should_and:
         main.ccx(control_index,operand_indices[operand_bit_index], a_indices[target_index])
-    main.snapshot(f"PreAddStep{operand_bit_index}")
+    # main.snapshot(f"PreAddStep{operand_bit_index}")
     main.append(n_bit_modular_adder(word_size,modulus),qargs=mod_adder_indices)
     for target_index, should_and in enumerate(should_and_array):
       if should_and:
         main.ccx(control_index,operand_indices[operand_bit_index], a_indices[target_index])
-    main.snapshot(f"AddStep{operand_bit_index}")
+    # main.snapshot(f"AddStep{operand_bit_index}")
 
   # put z in output if c is 0
   main.x(control_index)
@@ -343,9 +344,4 @@ def n_bit_controlled_modular_multiplier(word_size : int, modulus : int, multipli
 # display(n_bit_controlled_modular_multiplier(4,5,3).draw())
   # result.data()['snapshots']['statevector']
 # %%
-# carry_block().draw()
-# sum_block().draw()
-# n_bit_adder(2).draw()
-# n_bit_modular_adder(2,2).draw(fold=False)
-n_bit_controlled_modular_multiplier(2,2,3).draw(fold=False)
-# %%
+

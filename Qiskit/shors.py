@@ -1,6 +1,8 @@
 #%%
+from qiskit.circuit.quantumregister import QuantumRegister
 from qiskit.visualization.counts_visualization import plot_histogram
-from tutorials.qpe import qpe
+from num_theory import modular_inverse
+from qclib import n_bit_controlled_modular_multiplier
 from qiskit import Aer, QuantumCircuit
 from numpy import pi
 import math
@@ -29,6 +31,10 @@ will apply the controlled unitary operation with 0 as control bit
 """
 
 #%%
+
+
+
+
 def findNumBitsRequired(n) -> int:
   return math.ceil(2*math.log2(n))
 
@@ -55,16 +61,34 @@ def shors_unitary_generator(a,N):
     pass
 
   return shors_unitary
+#%%
+def shors(word_size: int, modulus: int, multiplier: int):
+  counting_bits = 2*word_size
+  unitary_length =n_bit_controlled_modular_multiplier(word_size,modulus,multiplier).num_qubits
+  total_qubits = counting_bits + unitary_length
+  multiplier_input_size = word_size
+  multiplier_input_indices = list(range(counting_bits,counting_bits+multiplier_input_size))
+  multiplier_output_size = word_size+1
+  multiplier_output_start = counting_bits + multiplier_input_size+word_size
+  multiplier_output_indices = list(range(multiplier_output_start, multiplier_output_start + multiplier_output_size))
+
+  multiplier_control_index = counting_bits
+  multiplier_indices = list(range(counting_bits+1, total_qubits))
 
 
+  main = QuantumCircuit(total_qubits)
+  counting_indices = list(range(counting_bits))
+  for counting_bit_index in range(counting_bits):
+    exp_multiplier = multiplier**(2**counting_bit_index)
+    exp_multiplier_mod_inverse = modular_inverse(exp_multiplier,modulus)
+    main.append(n_bit_controlled_modular_multiplier(word_size,modulus,exp_multiplier),qargs=[counting_bit_index,*multiplier_indices]) 
+    for word_bit_index in range(word_size):
+      main.cswap(counting_indices[counting_bit_index],multiplier_input_indices[word_bit_index], multiplier_output_indices[word_bit_index] )
+    unmult = n_bit_controlled_modular_multiplier(word_size,modulus,exp_multiplier_mod_inverse).inverse()
+    main.append(unmult,qargs=[counting_bit_index,*multiplier_indices])
+  return main
 
-
-
-
-
-
-
-# simulator = Aer.get_backend('aer_simulator')
-
+# %%
+shors(3,5,4).draw()
 
 # %%

@@ -41,3 +41,6 @@ results = simulator.run(qc_test).result()
 counts = results.get_counts()
 plot_histogram(counts)
 # %%
+qft(3).draw()
+
+# %%
