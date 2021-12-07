@@ -14,14 +14,13 @@
 
 % *** PDF, URL AND HYPERLINK PACKAGES ***
 % \usepackage{url}
-\usepackage{href}
+\usepackage{hyperref, xcolor}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=cyan,
-    pdftitle={Overleaf Example},
-    pdfpagemode=FullScreen,
+    citecolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
     }
 
 \urlstyle{same}
@@ -84,6 +83,14 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
+    The RSA cryptosystem plays an ever important role in the security of the modern
+    internet. Simultaneously, the threat of quantum computing inches closer to
+    obliterating this system entirely. This project is an effort to explore and
+    understand the algorithms and methodology behind RSA and the quantum
+    computing ``lightsaber'' the cripples its integrity. Through a hands on
+    approach, the algorithms involved in the topics explored are written up as
+    python scripts that allow such methods to be easily understood, analyzed,
+    and validated.
 \end{abstract}
 
 \section{Introduction}
@@ -92,8 +99,13 @@ greatest computing revolution. Inspired by a talk given by Helwer
 \cite{Helwer2018}, this project explores the motivation, applications, and
 technical methods in the grandiose topic of quantum computation. Specifically,
 motivation behind prime factorization is cultivated through the exposition of
-the RSA cryptosystem. The current methods are shown and their quantum superiors
-are analyzed and implemented. \url{https://github.com/Stephen-Campbell-UTD/NM_Project_Quantum_Computing}
+the RSA cryptosystem. Then, the current classical methods are shown and Shor's
+algorithm \cite{Shor1997}, the quantum alternative to these methods, is analyzed
+and implemented. In an effort to have a hands on experience with the technical
+topics discussed, many algorithms apart of these topics were reimplemented in
+python from scratch. The scripts apart of this effort and the \LaTeX  source of this report are
+hosted on a github repo
+\href{https://github.com/Stephen-Campbell-UTD/NM_Project_Quantum_Computing}{here}.
 
 
 
@@ -102,7 +114,7 @@ are analyzed and implemented. \url{https://github.com/Stephen-Campbell-UTD/NM_Pr
 Public key cryptosystems are the basis of secure communication on the internet.
 The Rivest-Shamir-Adleman (RSA) \cite{Rivest1978} public key cryptosystem is prominently used on
 the modern internet. In fact, it is currently being used in the browser I am
-writing this in! Understanding how RSA functions and how Quantum Computing
+writing this in! Understanding how RSA functions and how quantum computing
 "breaks" it provides tantamount evidence of the application of the computational
 power leveraged by quantum computers.
 
@@ -122,9 +134,9 @@ There are 3 major computational components of the RSA cryptosystem: key
 generation, encryption, and decryption. As a note on general terminology, an
 encrypted message is referred to as a ciphertext.  The setup of RSA is that a
 public key, in the form a tuple of numbers \((e, n)\), is generated and
-distributed. The private key is also a kept as tuple of numbers \((d,n)\)
-;however, this key is not distributed .  A concise explanation of the
-;cryptosystem follows.
+distributed. The private key is also a kept as tuple of numbers \((d,n)\);
+however this key is not distributed .  A concise explanation of the
+cryptosystem follows.
 
 \subsubsection{Encryption}
 
@@ -147,7 +159,7 @@ ciphertext is decrypted by the below equation.
 
 \subsubsection{Key generation}
 
-The steps of encryption and decryption feel magical yet rely on very unique
+The steps of encryption and decryption feel magical, yet rely on very unique
 properties that exist between the modulus, the encryption key, and the
 decryption key. These special properties will be developed shortly. First, there
 are important theorems that are utilized.
@@ -178,19 +190,22 @@ The major idea is shown below.
                          & \text{Find Modular Inverse of } e
 \end{align*}
 
-After the encryption key \(e\) is found, the decryption \(d\)key can be easily determined by computing the modular inverse.
+After the encryption key \(e\) is found, the decryption \(d\) key can be easily
+determined by computing the modular inverse.
 
 \subsection{What makes this hard to crack?}
+
 As seen from the key generation step, the decryption key can be easily recovered
-from the encryption key and the Euler totient function \(\varphi(n)\)of the modulus. The
-modulus and the encryption key are both distributed as the public key . The
+from the encryption key and the Euler totient function \(\varphi(n)\) of the modulus. The
+modulus and the encryption key are both distributed as the public key. The
 Euler totient function is extremely easily to calculate for a prime number, it
-is simply p-1;however, however for a composite the totient function requires the
-complete prime factorization of the composite . This provides the connection
+is simply \(p-1\); however, for a composite the totient function requires the
+complete prime factorization of the composite. This provides the connection
 between cracking RSA and prime factorization.   Furthermore, to make factoring
 problem harder and the cryptosystem more secure, 2 extremely large prime numbers
 are chosen. These numbers have roughly half the bits of the modulus. So for a
-2048 bit key, these prime numbers are 1024 bits or on the order of 10e308.
+2048 bit key, the modern standard, these prime numbers are 1024 bits or on the order of \(10^{308}\).
+
 \subsection{A Curious Aside}
 
 As seen from the key generation step, the decryption key can be easily recovered
@@ -207,12 +222,12 @@ are chosen. These numbers have roughly half the bits of the modulus. So for a
 \subsection{Classical Cracking}
 
 One method of cracking RSA would be to factor the publicly distributed modulus.
-With the prime factorization of modulus in hand, one could calculated the Euler
-totient of the modulus, take inverse  the encryption key mod the totient of the
-modulus and recover the decryption key. Thus the major problem lies in
+With the prime factorization of modulus in hand, one could calculate the Euler
+totient of the modulus, take the inverse of the encryption key \(\bmod\)the totient of the
+modulus and recover the decryption key. Thus, the major problem lies in
 factoring the modulus. The goto algorithms for factoring large integers are the
-general number field sieve and the quadratic sieve. These general number field
-sieve considered slightly better for integers \(> 10^{100}\)  has a asymptotic running
+general number field sieve and the quadratic sieve. The general number field
+sieve considered slightly better for integers \(> 10^{100}\), and  has an asymptotic running
 time of
 \[\exp\left(\left(\sqrt[3]{\frac{64}{9}} +o( 1)\right)(\ln n)^{1/3}(\ln\ln n)^{2/3}\right) \]
 What does this all mean? The state of the art \cite{Zimmermann2020} in classical factorization is when
@@ -237,15 +252,11 @@ resource.
     \item A quantum computer refers to a construction of connections between qubits and quantum gates.
 \end{itemize}
 Many quantum gates are useful in constructing high level circuits. These
-include: Controlled Not, Toffoli, Pauli X,Y,Z , Hadamard, Controlled Phase , and
-Fredkin . The action of these gates is easily seen when visualized on the bloch
+include: Controlled Not, Toffoli, Pauli X, Y, Z, Hadamard, Controlled Phase, and
+Fredkin. The action of these gates is easily seen when visualized on the Bloch
 sphere. The Qiskit visualization library provides convenience methods that plot
-the state of the qubits in a quantum circuit. An example is depicted below.
-Many quantum gates are useful in constructing high level circuits. These
-include: Controlled Not, Toffoli, Pauli X,Y,Z , Hadamard, Controlled Phase , and
-Fredkin . The action of these gates is easily seen when visualized on the bloch
-sphere. The Qiskit visualization library provides convenience methods that plot
-the state of the qubits in a quantum circuit. An example is depicted below in Fig.~\ref{fig:BlochSphere}.
+the state of the qubits in a quantum circuit. An example is depicted below in
+Fig.~\ref{fig:BlochSphere}.
 
 \begin{figure}[H]
     \begin{center}
@@ -282,7 +293,14 @@ example from the Qiskit website is shown below in Fig \ref{fig:FourierBasis}.
 
 
 Constructing the quantum Fourier transform circuit relies only on 2 gates: the Hadamard and
-controlled phase gate. A 3 Bit QFT circuit is shown below.
+controlled phase gate. A 3 Bit QFT circuit is shown in Fig. \ref{fig:QFTCirc}.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.35\textwidth]{QFTCirc.png}
+        \caption{\label{fig:QFTCirc} 3 Bit QFT Circuit}
+    \end{center}
+\end{figure}
 
 \subsubsection{Quantum Phase Estimation}
 
@@ -291,19 +309,20 @@ eigenvalue of a unitary operator's eigenstate. Given the eigenstate can be
 prepared and the unitary operator can be applied, the circuit allows for
 arbitrary precision approximation by increasing the number of approximating
 qubits. As to be seen, the problem of integer factorization can be reduced to
-estimating the phase of a unitary operator. In Shor's algorithm, Shor recommends
-twice the number of qubits as the number we are trying to factor for
-approximation.
+estimating the phase of a unitary operator. In Shor's algorithm, in regards to
+exactly how many qubits are required for integer factorization, Shor recommends
+twice the number of qubits needed to represent the number we are trying to
+factor.
 
 \subsubsection{Quantum Modular Exponentiation}
 
-As Shor notes in his praised paper \cite{Shor1997}, "The bottleneck in the
-quantum factoring algorithm; i.e., the piece of the factoring algorithm that
-consumes the most time and space, is modular exponentiation." Interestingly, the
+As Shor notes in his praised paper, "The bottleneck in the quantum factoring
+algorithm; i.e., the piece of the factoring algorithm that consumes the most
+time and space, is modular exponentiation."\cite{Shor1997} Interestingly, the
 modular exponentiation algorithm he presents is simply a quantum, and thus
 reversible, version of a classical circuit. Implementing this modular
 exponentiation circuit with Qiskit proved similar to be of the acclaimed
-complexity. The design I implemented was heavily inspired from Vedral's
+complexity. The design implemented was heavily inspired from Vedral's
 exposition \cite{Vedral1996} on arithmetic operations on quantum computers. The
 procedure of the design was the following:
 
@@ -311,7 +330,7 @@ procedure of the design was the following:
 
 All addition and subtraction operation begin by adding the left operand's bit,
 the right operand's bit, and a potential "carry" bit from the previous
-operation. In Quantum Circuits, these blocks can be realized with toffoli and
+operation. In quantum circuits, these blocks can be realized with toffoli and
 cnot gates.
 
 \begin{figure}[H]
@@ -343,15 +362,15 @@ where intermediate values are computed and ``uncomputed''.
 
 \emph{N Qubit Modular Adder}
 
-The Adder's inverse noted in the example as adder dg has the effect of
+The adder's inverse, noted in the example as adder dg, has the effect of
 subtracting the left operand from the right. This fact is utilized in the
-modular adder.  The process of the circuit is as follows:
+modular adder.  The process of the modular adder circuit is as follows:
 
 \begin{enumerate}
     \item The modulus is placed in qubits 7 and 8, the left operand is in qubits 0-1, the right operand in 2-4, 5-6 are ancilla, qubit 9  is also ancilla
     \item The left and right operand are added
     \item The modulus is then subtracted from that addition
-    \item The sign bit is "copied" to the ancillary qubit 9 and the modulus is added back if necessary the sign is negative
+    \item The sign bit is "copied" to the ancillary qubit 9 and the modulus is added back if necessary
     \item The value of the sign bit is uncomputed to make the gate reversible
 \end{enumerate}
 
@@ -364,9 +383,10 @@ modular adder.  The process of the circuit is as follows:
 
 \emph{Controlled N Qubit Modular Multiplier}
 
-By "Classically Controlling" the position of the gates based on the multiplier
-and utilizing the properties of modular multiplication, the quantum controlled
-modular multiplication circuit can be realized.
+By "Classically Controlling" the position of the gates based on the one of the
+multiplication's operands and utilizing the properties of modular
+multiplication, the quantum controlled modular multiplication circuit can be
+realized.
 
 \begin{figure}[H]
     \begin{center}
@@ -382,21 +402,54 @@ The modular exponentiation circuit can be realized by cascading controlled
 modular multiplications and uncomputing ancillas when necessary.
 
 \subsection{Shor's Algorithm}
-The goal of Shor's algorithm is to find the period, \(r\), of a number, \(b \bmod n \) and with \(r\) factor \(n\).
-Using a quantum computer, the period of a number \(\bmod n\) can be found by using
-phase estimation on the unitary operator \(b\cdot x \bmod N\) on a state \(\ket{x}\). The eigenstate
-chosen to find the period is simply \(\ket{1}\) . The phase estimated will be some
-fraction whose denominator has a high probability of being the period, r, of a
-number, b, mod n.
-On a quantum computer, this algorithm shatters the asymptotic complexity:
+The goal of Shor's algorithm is to find the period, \(r\), of a number, \(b
+\bmod n \). With \(r\), the number \(n\) can be factored. This is shown below.
+
+\begin{align*}
+    a^{r}                                            & \equiv 1\bmod n            \\
+    a^{r} +1                                         & =nq,\ q\ \in \mathbb{Z}    \\
+    \text{Restart if}                                & \ r\%2\ =1\                \\
+    \text{Restart if}                                & \ a^{r} \equiv -1,1\bmod n \\
+    \left( a^{r/2} +1\right)\left( a^{r/2} -1\right) & =nq,\ q\ \in \mathbb{Z}    \\
+    \gcd\left( a^{r/2} -1,n\right)                   & =\text{Factor of } n
+\end{align*}
+
+
+Using a quantum computer, the period of a number \(\bmod n\) can be found by
+using phase estimation on the unitary operator \(b\cdot x \bmod N\) on a state
+\(\ket{x}\). The eigenstate chosen to find the period is simply \(\ket{1}\) .
+The phase estimated will be some fraction whose denominator has a high
+probability of being the period, \(r\), of a number, \(b \bmod n\).  On a quantum
+computer, this algorithm shatters the classic asymptotic complexity for integer factorization:
 \[
     O\left((\log n)^{2}(\log\log n)(\log\log\log n)\right)
 \]
+With this said, while traditional quantum computers do not currently pose a
+threat via large integer factorization, what is exciting is that the asymptotic
+complexity is polynomial rather than exponential. If quantum computers could
+easily scale the size of the circuits and the number of qubits, this quantum
+superiority would be on full display.
 
 \section{Conclusion and Key Takeaways}
+
+Through the exploration involved in the project, the abilities quantum circuits
+provide have been shown to be of great importance. In a bittersweet manner,
+Shor's algorithm has yet to see practical use. This is simply because the number
+of ``ideal'' qubits required to crack RSA with Shor's algorithm is much more
+than the state of the art. It is predicted that Shor's Algorithm will be viable
+in the future and it is simply a matter of time. While seemingly concerning,
+there have been discussions regarding so-called ``Post-Quantum'' cryptography.
+These are systems intended to be immune to the threats posed by the quantum
+computing revolution.
+
+This project has led to the discovery of many impactful resources and
+technologies, especially in \href{https://qiskit.org/}{Qiskit}. Alongside these discoveries, some key technical
+takeaways are
+
 \begin{itemize}
-    \item Accessibility of resources about Quantum Computing and its simulation
-    \item Quantum Computing Topics usually have large overlap with ideas from classical digital logic systems
+    \item There is an enormous amount of engaging resources about quantum computing and its simulation
+    \item Cryptography provides great motivation for topics in number theory
+    \item Quantum Computing topics usually have large overlap with ideas from classical digital logic systems
 \end{itemize}
 
 % \bibliographystyle{IEEEtran}

@@ -1,0 +1,224 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{Helwer2018}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=43724b3e35df8e93396e86d2b0dc0692}{%
+           family={Helwer},
+           familyi={H\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{43724b3e35df8e93396e86d2b0dc0692}
+      \strng{fullhash}{43724b3e35df8e93396e86d2b0dc0692}
+      \strng{bibnamehash}{43724b3e35df8e93396e86d2b0dc0692}
+      \strng{authorbibnamehash}{43724b3e35df8e93396e86d2b0dc0692}
+      \strng{authornamehash}{43724b3e35df8e93396e86d2b0dc0692}
+      \strng{authorfullhash}{43724b3e35df8e93396e86d2b0dc0692}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Youtube}
+      \field{month}{4}
+      \field{title}{Quantum Computing for Computer Scientists}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://youtu.be/F_Riqjdh2oM
+      \endverb
+      \verb{url}
+      \verb https://youtu.be/F_Riqjdh2oM
+      \endverb
+    \endentry
+    \entry{Shor1997}{article}{}
+      \name{author}{1}{}{%
+        {{hash=7082a9c99d5d51479d4cfba6bbac2d30}{%
+           family={Shor},
+           familyi={S\bibinitperiod},
+           given={Peter\bibnamedelima W.},
+           giveni={P\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \strng{namehash}{7082a9c99d5d51479d4cfba6bbac2d30}
+      \strng{fullhash}{7082a9c99d5d51479d4cfba6bbac2d30}
+      \strng{bibnamehash}{7082a9c99d5d51479d4cfba6bbac2d30}
+      \strng{authorbibnamehash}{7082a9c99d5d51479d4cfba6bbac2d30}
+      \strng{authornamehash}{7082a9c99d5d51479d4cfba6bbac2d30}
+      \strng{authorfullhash}{7082a9c99d5d51479d4cfba6bbac2d30}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A digital computer is generally believed to be an efficient universal computing device; that is, it is believed able to simulate any physical computing device with an increase in computation time of at most a polynomial factor. This may not be true when quantum mechanics is taken into consideration. This paper considers factoring integers and finding discrete logarithms, two problems which are generally thought to be hard on a classical computer and have been used as the basis of several proposed cryptosystems. Efficient randomized algorithms are given for these two problems on a hypothetical quantum computer. These algorithms take a number of steps polynomial in the input size, e.g., the number of digits of the integer to be factored.}
+      \field{annotation}{Comment: 28 pages, LaTeX. This is an expanded version of a paper that appeared in the Proceedings of the 35th Annual Symposium on Foundations of Computer Science, Santa Fe, NM, Nov. 20--22, 1994. Minor revisions made January, 1996}
+      \field{issn}{0097-5397, 1095-7111}
+      \field{journaltitle}{SIAM Journal on Computing}
+      \field{month}{10}
+      \field{note}{arXiv: quant-ph/9508027}
+      \field{number}{5}
+      \field{title}{Polynomial-{Time} {Algorithms} for {Prime} {Factorization} and {Discrete} {Logarithms} on a {Quantum} {Computer}}
+      \field{urlday}{6}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
+      \field{volume}{26}
+      \field{year}{1997}
+      \field{urldateera}{ce}
+      \field{pages}{1484\bibrangedash 1509}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1137/S0097539795293172
+      \endverb
+      \verb{file}
+      \verb arXiv Fulltext PDF:https\://arxiv.org/pdf/quant-ph/9508027.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/quant-ph/9508027
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/quant-ph/9508027
+      \endverb
+      \keyw{Quantum Physics}
+    \endentry
+    \entry{Rivest1978}{article}{}
+      \name{author}{3}{}{%
+        {{hash=6a630bbc1f4da3f000de53a8c3fcda9a}{%
+           family={Rivest},
+           familyi={R\bibinitperiod},
+           given={R.\bibnamedelimi L.},
+           giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=7b33764dee51f9ccad6bf7f94f4a5328}{%
+           family={Shamir},
+           familyi={S\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=4a8266f26fefcaad4dc64bfd4220a4ae}{%
+           family={Adleman},
+           familyi={A\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{e6041f1e6bea0c7f11abe539180c7aa5}
+      \strng{fullhash}{e6041f1e6bea0c7f11abe539180c7aa5}
+      \strng{bibnamehash}{e6041f1e6bea0c7f11abe539180c7aa5}
+      \strng{authorbibnamehash}{e6041f1e6bea0c7f11abe539180c7aa5}
+      \strng{authornamehash}{e6041f1e6bea0c7f11abe539180c7aa5}
+      \strng{authorfullhash}{e6041f1e6bea0c7f11abe539180c7aa5}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{An encryption method is presented with the novel property that publicly re-vealing an encryption key does not thereby reveal the corresponding decryption key. This has two important consequences: 1. Couriers or other secure means are not needed to transmit keys, since a message can be enciphered using an encryption key publicly revealed by the intended recipient. Only he can decipher the message, since only he knows the corresponding decryption key. 2. A message can be “signed ” using a privately held decryption key. Anyone can verify this signature using the corresponding publicly revealed en-cryption key. Signatures cannot be forged, and a signer cannot later deny the validity of his signature. This has obvious applications in “electronic mail ” and “electronic funds transfer ” systems. A message is encrypted by representing it as a number M, raising M to a publicly specified power e, and then taking the remainder when the result is divided by the publicly specified product, n, of two large secret prime numbers p and q. Decryption is similar; only a different, secret, power d is used, where e · d = 1 (mod (p - 1) · (q - 1)). The security of the system rests in part on the difficulty of factoring the published divisor, n. Key Words and Phrases: digital signatures, public-key cryptosystems, pri-vacy, authentication, security, factorization, prime number, electronic mail,}
+      \field{journaltitle}{Communications of the ACM}
+      \field{title}{A method for obtaining digital signatures and public-key cryptosystems}
+      \field{year}{1978}
+      \verb{file}
+      \verb Citeseer - Full Text PDF:http\://citeseerx.ist.psu.edu/viewdoc/download\;jsessionid=4ACE95B7633A29B8938D89673A9AB720?doi=10.1.1.607.2677&rep=rep1&type=pdf:application/pdf
+      \endverb
+    \endentry
+    \entry{Zimmermann2020}{article}{}
+      \name{author}{1}{}{%
+        {{hash=164da3b7efe39dd498884cfa29bc36a3}{%
+           family={Zimmermann},
+           familyi={Z\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{164da3b7efe39dd498884cfa29bc36a3}
+      \strng{fullhash}{164da3b7efe39dd498884cfa29bc36a3}
+      \strng{bibnamehash}{164da3b7efe39dd498884cfa29bc36a3}
+      \strng{authorbibnamehash}{164da3b7efe39dd498884cfa29bc36a3}
+      \strng{authornamehash}{164da3b7efe39dd498884cfa29bc36a3}
+      \strng{authorfullhash}{164da3b7efe39dd498884cfa29bc36a3}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{N/A}
+      \field{title}{Factorization of RSA-250}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://listserv.nodak.edu/cgi-bin/wa.exe?A2=NMBRTHRY;dc42ccd1.2002
+      \endverb
+      \verb{url}
+      \verb https://listserv.nodak.edu/cgi-bin/wa.exe?A2=NMBRTHRY;dc42ccd1.2002
+      \endverb
+    \endentry
+    \entry{Vedral1996}{article}{}
+      \name{author}{3}{}{%
+        {{hash=2d1f33898cfd1c15722c070f05dc63f4}{%
+           family={Vedral},
+           familyi={V\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+        {{hash=2c5bc9d05a0ed02006ab74a3089ddca7}{%
+           family={Barenco},
+           familyi={B\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=1395f39eb493cf3ed78c74785d3f9a9b}{%
+           family={Ekert},
+           familyi={E\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{46e22400d36662b3374f5b4f24098b48}
+      \strng{fullhash}{46e22400d36662b3374f5b4f24098b48}
+      \strng{bibnamehash}{46e22400d36662b3374f5b4f24098b48}
+      \strng{authorbibnamehash}{46e22400d36662b3374f5b4f24098b48}
+      \strng{authornamehash}{46e22400d36662b3374f5b4f24098b48}
+      \strng{authorfullhash}{46e22400d36662b3374f5b4f24098b48}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Quantum computers require quantum arithmetic. We provide an explicit construction of quantum networks effecting basic arithmetic operations: from addition to modular exponentiation. Quantum modular exponentiation seems to be the most difficult (time and space consuming) part of Shor's quantum factorising algorithm. We show that the auxiliary memory required to perform this operation in a reversible way grows linearly with the size of the number to be factorised.}
+      \field{annotation}{Comment: 7 pages, LaTeX, + 6 PS figures in a tar compressed file. See also http://eve.physics.ox.ac.uk/QChome.html}
+      \field{issn}{1050-2947, 1094-1622}
+      \field{journaltitle}{Physical Review A}
+      \field{month}{7}
+      \field{note}{arXiv: quant-ph/9511018}
+      \field{number}{1}
+      \field{title}{Quantum {Networks} for {Elementary} {Arithmetic} {Operations}}
+      \field{urlday}{6}
+      \field{urlmonth}{12}
+      \field{urlyear}{2021}
+      \field{volume}{54}
+      \field{year}{1996}
+      \field{urldateera}{ce}
+      \field{pages}{147\bibrangedash 153}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1103/PhysRevA.54.147
+      \endverb
+      \verb{file}
+      \verb arXiv Fulltext PDF:https\://arxiv.org/pdf/quant-ph/9511018.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/quant-ph/9511018
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/quant-ph/9511018
+      \endverb
+      \keyw{Quantum Physics}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
